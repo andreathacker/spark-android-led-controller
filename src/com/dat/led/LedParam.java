@@ -62,7 +62,7 @@ public class LedParam {
 	}
 
 	public String getParamString(){
-		String output = mLed + ", " + mStart + ", " + mEnd + ", " + mTime + ", " + mLoop;
+		String output = mLed + "," + mStart + "," + mEnd + "," + mTime + "," + mLoop;
 
 		Log.d(TAG, "Param string: " + output);
 		return output;

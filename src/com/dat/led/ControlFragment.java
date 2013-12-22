@@ -46,6 +46,7 @@ public class ControlFragment extends Fragment implements OnClickListener {
 	public final static String	TAG				= ControlFragment.class.getSimpleName();
 
 	public final static int		MAX_BRIGHTNESS	= 255;
+	public final static long	MAX_TIME		= 5000;
 
 	private Button				postButton;
 	private SeekBar				startBar;
@@ -87,9 +88,9 @@ public class ControlFragment extends Fragment implements OnClickListener {
 		if(id == postButton.getId()){
 			Log.d(TAG, "Post operation clicked");
 
-			Toast.makeText(getActivity(), "Start= " + startBrightness + ", end= " + endBrightness + ", time= " + time, Toast.LENGTH_LONG).show();
+			Toast.makeText(getActivity(), "Start= " + startBrightness + ", end= " + endBrightness + ", time= " + time, Toast.LENGTH_SHORT).show();
 
-			performLedOperation(new LedParam(LED.LED_A, startBrightness, endBrightness, time, loopCheck.isChecked()));
+			performLedOperation(new LedParam(LED.LED_B, startBrightness, endBrightness, time, loopCheck.isChecked()));
 		}
 	}
 
@@ -110,7 +111,7 @@ public class ControlFragment extends Fragment implements OnClickListener {
 
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
-
+				startBrightness = progress;
 			}
 		});
 		startBrightness = startBar.getProgress();
@@ -133,7 +134,7 @@ public class ControlFragment extends Fragment implements OnClickListener {
 
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
-
+				endBrightness = progress;
 			}
 		});
 		endBrightness = endBar.getProgress();
@@ -141,7 +142,7 @@ public class ControlFragment extends Fragment implements OnClickListener {
 
 	public void setupTimeBar(View v){
 		timeBar = (SeekBar) v.findViewById(R.id.seek_bar_time);
-		timeBar.setMax(MAX_BRIGHTNESS);
+		timeBar.setMax((int) MAX_TIME);
 		timeBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
 			@Override
@@ -156,7 +157,7 @@ public class ControlFragment extends Fragment implements OnClickListener {
 
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
-
+				time = progress;
 			}
 		});
 		time = timeBar.getProgress();
