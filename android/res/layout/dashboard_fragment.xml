@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="20dp"
+        android:text="FRAGMENT" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/dashboard_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <android.support.v4.view.PagerTitleStrip
+            android:id="@+id/dashboard_pager_title_strip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:background="#333333"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
+            android:textColor="#ffffff" />
+    </android.support.v4.view.ViewPager>
+
+</LinearLayout>
