@@ -2,95 +2,157 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="15dp" >
+    android:background="@color/gray_dark"
+    android:orientation="vertical" >
 
-    <LinearLayout
+    <View
+        android:layout_width="80dp"
+        android:layout_height="10dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/yellow_main" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/yellow_main" />
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#3399EEFF"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/yellow_main"
         android:orientation="vertical"
-        android:padding="15dp" >
+        android:padding="1dp" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="START"
-            android:textColor="#333"
-            android:textSize="12sp" />
-
-        <SeekBar
-            android:id="@+id/seek_bar_start_brightness"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp" />
+            android:background="@color/gray_dark"
+            android:orientation="vertical" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="END"
-            android:textColor="#333"
-            android:textSize="12sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="15dp" >
 
-        <SeekBar
-            android:id="@+id/seek_bar_end_brightness"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="START"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="TIME"
-            android:textColor="#333"
-            android:textSize="12sp" />
+                <SeekBar
+                    android:id="@+id/seek_bar_start_brightness"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:progressDrawable="@drawable/seekbar_progress" />
 
-        <SeekBar
-            android:id="@+id/seek_bar_time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp" />
-    </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="END"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <SeekBar
+                    android:id="@+id/seek_bar_end_brightness"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="TIME"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <SeekBar
+                    android:id="@+id/seek_bar_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/gray_light"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:weightSum="2" >
+
+                <CheckBox
+                    android:id="@+id/check_box_loop"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="LOOP"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="12sp" />
+
+                <CheckBox
+                    android:id="@+id/check_box_invert"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="INV LOOP"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="#3399EEFF"
-        android:orientation="horizontal"
-        android:padding="15dp"
-        android:weightSum="2" >
-
-        <CheckBox
-            android:id="@+id/check_box_loop"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="LOOP"
-            android:textColor="#333"
-            android:textSize="12sp" />
-
-        <CheckBox
-            android:id="@+id/check_box_invert"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="INV LOOP"
-            android:textColor="#333"
-            android:textSize="12sp" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/post_operation_btn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:background="#FF99EEFF"
-        android:text="POST OPERATION"
-        android:textColor="#ffffff"
-        android:textSize="18dp"
-        android:textStyle="bold" />
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@color/yellow_main"
+        android:orientation="horizontal"
+        android:padding="1dp"
+        android:weightSum="10" >
+
+        <Button
+            android:id="@+id/post_operation_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="7"
+            android:background="@color/yellow_main"
+            android:gravity="center"
+            android:text="POST OPERATION"
+            android:textColor="@color/gray_dark"
+            android:textSize="18sp"
+            android:textStyle="normal" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/gray_dark" />
+
+        <Button
+            android:id="@+id/post_options_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="@color/yellow_main"
+            android:gravity="center"
+            android:text="MANUAL"
+            android:textColor="@color/gray_dark"
+            android:textSize="18sp"
+            android:textStyle="normal" />
+    </LinearLayout>
 
 </LinearLayout>

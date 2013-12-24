@@ -47,7 +47,14 @@ public class DashboardFragmentAdapter extends FragmentStatePagerAdapter {
 
 	@Override
 	public CharSequence getPageTitle(int position){
-		return LED.getLED(position).toString();
+		switch(LED.getLED(position)){
+			case LED_A:
+				return "LED 1";
+			case LED_B:
+				return "LED 2";
+			default:
+				return "null";
+		}
 	}
 
 }
