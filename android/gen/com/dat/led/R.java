@@ -24,10 +24,12 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f080007;
+        public static final int action_settings=0x7f080009;
         public static final int check_box_invert=0x7f080005;
         public static final int check_box_loop=0x7f080004;
-        public static final int control_fragment=0x7f080000;
+        public static final int dashboard_fragment=0x7f080000;
+        public static final int dashboard_pager_title_strip=0x7f080008;
+        public static final int dashboard_view_pager=0x7f080007;
         public static final int post_operation_btn=0x7f080006;
         public static final int seek_bar_end_brightness=0x7f080002;
         public static final int seek_bar_start_brightness=0x7f080001;
@@ -36,6 +38,8 @@ public final class R {
     public static final class layout {
         public static final int contol_activity=0x7f030000;
         public static final int control_fragment=0x7f030001;
+        public static final int dashboard_activity=0x7f030002;
+        public static final int dashboard_fragment=0x7f030003;
     }
     public static final class menu {
         public static final int contol=0x7f070000;

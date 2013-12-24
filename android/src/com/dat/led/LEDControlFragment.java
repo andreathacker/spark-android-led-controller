@@ -42,11 +42,13 @@ import com.dat.led.LedParam.LED;
 /**
  * @author davidthacker
  */
-public class ControlFragment extends Fragment implements OnClickListener {
-	public final static String	TAG				= ControlFragment.class.getSimpleName();
+public class LEDControlFragment extends Fragment implements OnClickListener {
+	public final static String	TAG					= LEDControlFragment.class.getSimpleName();
 
-	public final static int		MAX_BRIGHTNESS	= 255;
-	public final static long	MAX_TIME		= 5000;
+	public final static int		MAX_BRIGHTNESS		= 255;
+	public final static long	MAX_TIME			= 5000;
+
+	public static final String	ARG_LED_POSITION	= "arg_led_position";
 
 	private Button				postButton;
 	private SeekBar				startBar;
@@ -55,12 +57,18 @@ public class ControlFragment extends Fragment implements OnClickListener {
 	private CheckBox			loopCheck;
 	private CheckBox			invertCheck;
 
-	private int					startBrightness;
-	private int					endBrightness;
-	private long				time;
+	private LED					mLed;
+	private int					mStartBrightness;
+	private int					mEndBrightness;
+	private long				mTime;
 
-	public static ControlFragment newInstance(){
-		ControlFragment fragment = new ControlFragment();
+	public static LEDControlFragment newInstance(LED led){
+		LEDControlFragment fragment = new LEDControlFragment();
+
+		Bundle args = new Bundle();
+		args.putParcelable(ARG_LED_POSITION, led);
+		fragment.setArguments(args);
+
 		return fragment;
 	}
 
@@ -78,6 +86,9 @@ public class ControlFragment extends Fragment implements OnClickListener {
 		postButton = (Button) controlView.findViewById(R.id.post_operation_btn);
 		postButton.setOnClickListener(this);
 
+		mLed = (LED) getArguments().get(ARG_LED_POSITION);
+		Log.d(TAG, "led = " + mLed);
+
 		return controlView;
 	}
 
@@ -88,9 +99,9 @@ public class ControlFragment extends Fragment implements OnClickListener {
 		if(id == postButton.getId()){
 			Log.d(TAG, "Post operation clicked");
 
-			Toast.makeText(getActivity(), "Start= " + startBrightness + ", end= " + endBrightness + ", time= " + time, Toast.LENGTH_SHORT).show();
+			Toast.makeText(getActivity(), "Start= " + mStartBrightness + ", end= " + mEndBrightness + ", time= " + mTime, Toast.LENGTH_SHORT).show();
 
-			performLedOperation(new LedParam(LED.LED_B, startBrightness, endBrightness, time, loopCheck.isChecked()));
+			performLedOperation(new LedParam(mLed, mStartBrightness, mEndBrightness, mTime, loopCheck.isChecked()));
 		}
 	}
 
@@ -101,7 +112,7 @@ public class ControlFragment extends Fragment implements OnClickListener {
 
 			@Override
 			public void onStopTrackingTouch(SeekBar seekBar){
-				startBrightness = seekBar.getProgress();
+				mStartBrightness = seekBar.getProgress();
 			}
 
 			@Override
@@ -111,10 +122,10 @@ public class ControlFragment extends Fragment implements OnClickListener {
 
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
-				startBrightness = progress;
+				mStartBrightness = progress;
 			}
 		});
-		startBrightness = startBar.getProgress();
+		mStartBrightness = startBar.getProgress();
 	}
 
 	public void setupEndBar(View v){
@@ -124,7 +135,7 @@ public class ControlFragment extends Fragment implements OnClickListener {
 
 			@Override
 			public void onStopTrackingTouch(SeekBar seekBar){
-				endBrightness = seekBar.getProgress();
+				mEndBrightness = seekBar.getProgress();
 			}
 
 			@Override
@@ -134,10 +145,10 @@ public class ControlFragment extends Fragment implements OnClickListener {
 
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
-				endBrightness = progress;
+				mEndBrightness = progress;
 			}
 		});
-		endBrightness = endBar.getProgress();
+		mEndBrightness = endBar.getProgress();
 	}
 
 	public void setupTimeBar(View v){
@@ -147,7 +158,7 @@ public class ControlFragment extends Fragment implements OnClickListener {
 
 			@Override
 			public void onStopTrackingTouch(SeekBar seekBar){
-				time = seekBar.getProgress();
+				mTime = seekBar.getProgress();
 			}
 
 			@Override
@@ -157,10 +168,10 @@ public class ControlFragment extends Fragment implements OnClickListener {
 
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
-				time = progress;
+				mTime = progress;
 			}
 		});
-		time = timeBar.getProgress();
+		mTime = timeBar.getProgress();
 	}
 
 	public void performLedOperation(LedParam param){

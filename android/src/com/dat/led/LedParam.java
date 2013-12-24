@@ -16,6 +16,8 @@
 // @formatter:on
 package com.dat.led;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 
 /**
@@ -30,7 +32,7 @@ public class LedParam {
 	public String				mTime;
 	public String				mLoop;
 
-	public enum LED {
+	public enum LED implements Parcelable {
 		LED_A("l0"),
 		LED_B("l1");
 
@@ -47,12 +49,47 @@ public class LedParam {
 		public String toString(){
 			return mLedEnum;
 		}
+
+		public static LED getLED(int position){
+			switch(position){
+				case 0:
+					return LED_A;
+				case 1:
+					return LED_B;
+				default:
+					return null;
+			}
+		}
+
+		@Override
+		public int describeContents(){
+			return 0;
+		}
+
+		@Override
+		public void writeToParcel(Parcel dest, int flags){
+			dest.writeInt(ordinal());
+		}
+
+		// @formatter:off
+		public static final Creator<LED>	CREATOR	= new Creator<LED>() {
+			@Override
+			public LED createFromParcel(final Parcel source){
+				return LED.values()[source.readInt()];
+			}
+
+			@Override
+			public LED[] newArray(final int size){
+				return new LED[size];
+			}
+		};
+		// @formatter:on
 	}
 
-	public LedParam(LED led, int start, int end, long time, boolean loop){
+	public LedParam(LED led, int start, int end, long time, boolean loop) {
 		setOperation(led, start, end, time, loop);
 	}
-	
+
 	public void setOperation(LED led, int start, int end, long time, boolean loop){
 		mLed = led;
 		mStart = "" + start;
